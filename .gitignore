@@ -1,1 +1,3 @@
 virtualenv/
+__init__.py
+*.pyc
