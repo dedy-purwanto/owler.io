@@ -87,6 +87,7 @@ INSTALLED_APPS = (
 
     'preferences',
     'accounts',
+    'hosts',
     'home',
 )
 
