@@ -1,3 +1,4 @@
 virtualenv/
 __init__.py
 *.pyc
+owlerio/settings_local.py
