@@ -63,8 +63,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'owlerio.urls'
 LOGIN_URL = '/'
 
-TEMPLATE_DIRS = (
-)
+TEMPLATE_DIRS = ( PROJECT_PATH + '/templates',)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
