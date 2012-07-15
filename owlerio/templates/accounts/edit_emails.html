@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+
+<h1>Edit Emails</h1>
+You can add multiple email addresses to allow creating issues from different email addresses.
+<hr />
+<form method="post" action="" class="form-horizontal">
+
+    {% for form in formset %}
+        <div class="control-group{% if form.email.errors %} error {% endif %}">
+            <label class="control-label">Email</label>
+            <div class="controls">
+                {{form.id}}
+                {{form.email}}
+                {% if form.instance.pk %}
+                    <a href='{% url "accounts:delete-email" form.instance.pk %}'>Remove</a>
+                {% endif %}
+                {% if form.email.errors %}
+                    <span class="help-inline">{{ form.email.errors.0}}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+<br /> <br />
+<button type='submit' class='btn btn-primary'>Save</button>
+{% csrf_token %}
+{{ formset.management_form }}
+</form>
+
+{% endblock %}

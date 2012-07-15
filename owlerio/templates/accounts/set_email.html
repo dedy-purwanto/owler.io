@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="span12">
+<h1>Thanks for using owler.io!</h1> 
+Now just one more step, we need to know who you are when you send issues to the owls.<br />
+please enter your email address that you are going to use to send issues from.<br /><br />
+<form class="form-search" method="post" action="{% url "accounts:set-email" %}">
+    <div class="control-group{% if form.email.errors %} error {% endif %}">
+        <div class="controls">
+            {{ form.email|add_class:"span3 input-large"|attr:"placeholder='Email..'" }}
+            <span class="help-inline">{{ form.email.errors.0}}</span>
+        </div>
+    </div>
+    {% csrf_token %} 
+    <button type="submit" class="btn btn-primary">Save</Button>
+</form>
+</div>
+<div class="span5">
+    <br /><br /><br />
+    <i> We value your privacy, for more information about how we treat your data, please take a look at <a href=''>privacy</a>, <a href=''>terms</a>, and <a href=''>how owler.io process your data</a>.  </i>
+</div>
+{% endblock %}

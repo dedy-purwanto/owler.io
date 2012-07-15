@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+
+{% if request.user.user_host.exists %}
+    {% if request.GET.ft %}
+        <div class="row">
+            <div class="alert alert-success">
+                <h1>You're all set!</h1>
+                Now that you have your repository list, start creating issues simply by sending them to <b>your-repo-name@owler.io</b>, think that'll be too long to type? you can set an alias so it could become <b>yrn@owler.io</b>. <a href='/about/'>Learn more how to utilize all the features and privacy settings here</a>. <br /><br />You can also add more SCM hostings from your <a href='{% url 'hosts:edit-scms' %}'>{{request.user}}->Preferences</a> page.
+            </div>
+        </div>
+    {% endif %}
+    {% for user_host in user.user_host.all %}
+        <div class="row">
+            <div class="span7 repo_header">
+                <a href='{% url "hosts:update-userhost" user_host.pk %}'>{{user_host.host|capfirst}}</a>
+            </div>
+            <div class="span5" align='right'>
+                <a href='{% url "hosts:update-userhost" user_host.pk %}' class="badge">Preference</a>
+                {% if user_host.host.slug == 'github' %}
+                    <a href='{% url "hosts:refresh-github" %}' class="badge">Refresh</a>
+                {% endif %}
+                {% if user_host.host.slug == 'bitbucket' %}
+                    <a href='{% url "hosts:refresh-bitbucket" %}' class="badge">Refresh</a>
+                {% endif %}
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+        {% for repo in user_host.repos.all %}
+                <div class="span3 alert {% if repo.is_valid %}alert-info{%else%}alert-error{%endif%}">
+                    {{repo.repo_owner_username}}/<b><a href='{% url "hosts:update-repo" repo.pk %}'>{{repo.title}}</a></b> {% if repo.alias %} | {{repo.alias}}{%endif%} <br />
+                    {% if not repo.is_valid and not repo.can_use_title %}
+                        Woops, another repository is exists with this name, please create an alias.
+                    {% else %}
+                        {% if not repo.can_use_title %}
+                            <i>Another repository exists with the same name, but you can use your alias.</i>
+                        {% endif %}
+                    {% endif %}
+                </div>
+        {% endfor %}
+        </div>
+        <br /><br />
+    {% endfor %}
+
+{% else %}
+    <h1>Welcome to owler.io</h1>
+    <i>You're finally here!, now just connect your SCM accounts <br />with owler.io to start creating issues in the repositories.</i>
+    <br /><br />
+
+    <ul>
+        <li> <a href='https://github.com/login/oauth/authorize?client_id={{github_client_id}}&scope=repo'>Github</a> </li>
+        <li> <a href='{% url "hosts:request-bitbucket" %}'>Bitbucket</a></li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <i>You can also connect with other additional SCM later.</i>
+{% endif %}
+
+{% endblock %}
