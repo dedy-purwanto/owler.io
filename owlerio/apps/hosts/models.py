@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from redis import Redis
-
 from preferences.models import Preference, cache_repo_preference
 
 
@@ -76,3 +75,21 @@ class UserRepo(models.Model):
 
     def __unicode__(self):
         return '%s - %s - %s - %s' % (self.user_host.user.username, self.user_host.host.slug, self.repo_id, self.title)
+
+    def save(self, *args, **kwargs):
+        validating = False
+        if 'validating' in kwargs:
+            validating = kwargs.pop('validating')
+
+        try:
+            preference = self.preference
+        except Preference.DoesNotExist:
+            self.preference = Preference.objects.create()
+
+        if not validating:
+            UserRepo.objects.validate_user_repos(self.user_host.user)
+
+        super(UserRepo, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['title', 'alias']
