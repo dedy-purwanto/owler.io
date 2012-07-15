@@ -66,7 +66,8 @@ class UserRepo(models.Model):
     objects = UserRepoManager()
 
     def __unicode__(self):
-        return '%s - %s - %s - %s' % (self.user_host.user.username, self.user_host.host.slug, self.repo_id, self.title)
+        return '%s - %s - %s - %s' % (self.user_host.user.username,
+                self.user_host.host.slug, self.repo_id, self.title)
 
     def save(self, *args, **kwargs):
         validating = False
