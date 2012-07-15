@@ -77,6 +77,7 @@ INSTALLED_APPS = (
 
     'south',
 
+    'preferences',
     'accounts',
 )
 LOGGING = {
