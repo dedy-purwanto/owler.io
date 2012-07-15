@@ -1,0 +1,29 @@
+<div class="control-group">
+    <label class="control-label" for="id_{{form.track_request.name}}">Track request</label>
+    <div class="controls">
+        {{form.track_request}}
+        <span class="help-inline">Track incoming email from you. <a href=''>Why?</a></span>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="id_{{form.track_response.name}}">Track response</label>
+    <div class="controls">
+        {{form.track_response}}
+        <span class="help-inline">Track responses from your SCM hostings. <a href=''>Why?</a></span>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="id_{{form.email_errors.name}}">Email errors</label>
+    <div class="controls">
+        {{form.email_errors}}
+        <span class="help-inline">Send error responses from SCM hosting to you.</span>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="id_{{form.signature.name}}">Signature</label>
+    <div class="controls">
+        {{form.signature}}<br /><br />
+        {{form.signature_text}}
+    </div>
+</div>
+
