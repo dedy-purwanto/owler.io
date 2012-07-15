@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+<h1>Delete {{host.host|capfirst}} from your scm?</h1>
+This will irreversebly delete the repositories preferences in the respected SCM as well, don't worry, you can always add them back later by associating it again. 
+The {{host.host|capfirst}} and the following repositories will be removed from your owler.io account:
+<ul>
+{% for repo in host.repos.all %}
+<li>{{repo.repo_owner_username}} / {{repo.title}} {% if repo.alias %} | {{repo.alias}} {%endif%} </li>
+{% endfor %}
+</ul>
+<form method='post' action=''>
+    {% csrf_token %}
+    <button type='submit' class='btn btn-primary'>Yes, remove</button>
+    &nbsp;
+    &nbsp;
+    <a href='{% url "hosts:edit-scms" %}'>Cancel and go back</a>
+</form>
+
+
+{% endblock %}

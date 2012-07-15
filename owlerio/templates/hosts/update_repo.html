@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+<h1>Edit {{object.title}}'s preferences</h1><hr />
+<form method="post" action="" class="form-horizontal">
+<fieldset>
+    <div class="control-group{% if form.alias.errors %} error {% endif %}">
+        <label class="control-label" for="id_{{form.alias.name}}">Alias</label>
+        <div class="controls">
+            {{form.alias}}
+            <span class="help-inline">Create issue using [alias]@owler.io</span>
+            {% if form.alias.errors %}
+                <span class="help-block">{{ form.alias.errors.0}}</span>
+            {% endif %}
+        </div>
+    </div>
+    {% include "preferences/form.html" with form=form %}
+</fieldset>
+<button type='submit' class='btn btn-primary'>Save</button>
+{% csrf_token %}
+</form>
+
+{% endblock %}
+{% block base-js %}
+<script src="{{STATIC_URL}}js/preference.js"></script>
+{% endblock %}

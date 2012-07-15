@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+<h1>Your current SCMs:</h1>
+{% for host in hosts %}
+<div class="row">
+    <div class="span8">
+        <h2>{{host.host.slug|capfirst}}</h2>
+        <a href='{% url "hosts:delete-scm" host.pk %}'>Delete</a>
+        <br /><br />
+    </div>
+</div>
+{% endfor %}
+{% if github or bitbucket %}
+    <hr />
+    <h1>Associate with other SCMs:</h1>
+    <div class="row">
+        {% if github %}
+        <div class="span8">
+            <h3><a href='https://github.com/login/oauth/authorize?client_id={{github_client_id}}&scope=repo'>Github</a></h3>
+        </div>
+        {% endif %}
+        {% if bitbucket %}
+        <div class="span8">
+            <h3><a href='{% url "hosts:request-bitbucket" %}'>Bitbucket</a></h3>
+        </div>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% endblock %}

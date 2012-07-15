@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+<h1>Edit {{object.host.slug}}'s preferences</h1><hr />
+<form method="post" action="" class="form-horizontal"><br />
+<fieldset>
+    {% include "preferences/form.html" with form=form %}
+</fieldset>
+<button type='submit' class='btn btn-primary'>Save</button>
+{% csrf_token %}
+</form>
+
+{% endblock %}
+{% block base-js %}
+<script src="{{STATIC_URL}}js/preference.js"></script>
+{% endblock %}
