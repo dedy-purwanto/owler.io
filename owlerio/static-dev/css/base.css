@@ -1,0 +1,102 @@
+body{
+    background-color:#F4F5F7;
+
+}
+.navbar-blue{
+background-color:#ffffff;
+background-image: -moz-linear-gradient(top, #ffffff, #e0e0e0);
+background-image: -ms-linear-gradient(top, #ffffff, #e0e0e0);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e0e0e0));
+background-image: -webkit-linear-gradient(top, #ffffff, #e0e0e0);
+background-image: -o-linear-gradient(top, #ffffff, #e0e0e0);
+background-image: linear-gradient(top, #ffffff, #e0e0e0);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e0e0e0', GradientType=0);
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+
+.navbar-blue .nav li a{
+    color:#000000;
+    font-weight:bold;
+
+}
+.navbar-blue .nav li .logo{
+    font-size:18px;
+
+}
+.navbar-blue .nav .dropdown li a{
+    color:#4982AF;
+    font-weight:normal;
+
+}
+.navbar-blue .nav .dropdown li a:hover{
+    color:#000000;
+}
+
+.main_container{
+    padding-top:100px;
+
+}
+
+.footer{
+    padding-top:100px;
+    color:#808080;
+    font-size:11px;
+}
+
+.home_email h1{
+    color:#000000;
+    font-size:26px;
+    font-weight:bold;
+}
+.home_email{
+    color:#808080;
+    font-size:12px;
+
+}
+.home_email .feature{
+    font-weight:bold;
+    font-size:13px;
+    color:#4182D2;
+
+}
+.home_email .notes{
+    font-style:italic;
+    font-size:11px;
+
+}
+.home_email .sample{
+    padding-bottom:20px;
+
+}
+
+.home_email{
+    padding-top:80px;
+    padding-bottom:40px;
+    background-color:#ffffff;
+    border-top:1px solid #c0c0c0;
+    border-bottom:1px solid #c0c0c0;
+}
+
+input[type="text"]{
+    height:30px;
+
+}
+
+.bullet_check{
+    list-style-image:url("/static/img/checkbox.png");
+
+}
+
+.repo_header{
+    font-size:24px;
+    font-weight:bold;
+
+}
