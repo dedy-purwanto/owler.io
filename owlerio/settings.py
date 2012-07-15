@@ -79,6 +79,7 @@ INSTALLED_APPS = (
 
     'preferences',
     'accounts',
+    'home',
 )
 LOGGING = {
     'version': 1,
