@@ -61,6 +61,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'owlerio.urls'
+LOGIN_URL = '/'
 
 TEMPLATE_DIRS = (
 )
