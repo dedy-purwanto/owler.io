@@ -21,3 +21,9 @@ class Profile(models.Model):
                     signature_text="Sent from owler.io",
                     )
         super(Profile, self).save(*args, **kwargs)
+
+
+class Email(models.Model):
+
+    user = models.ForeignKey(User, related_name='emails')
+    email = models.EmailField(unique=True)
