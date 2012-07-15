@@ -16,6 +16,7 @@ class Host(models.Model):
     def __unicode__(self):
         return self.slug
 
+
 class UserHost(models.Model):
 
     host = models.ForeignKey(Host, related_name='users')
@@ -36,3 +37,26 @@ class UserHost(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.user.username, self.host.slug)
+
+
+class UserRepoManager(models.Manager):
+
+    use_for_related_fields = True
+
+    def validate_user_repos(self, user):
+        repos = UserRepo.objects.filter(user_host__user=user)
+        for repo in repos:
+            dups = UserRepo.objects.filter(title=repo.title).\
+                    filter(user_host__user=user).exclude(pk=repo.pk)
+            if dups:
+                repo.can_use_title = False
+                repo.is_valid = False if not repo.alias else True
+                repo.save(validating=True)
+                for dup in dups:
+                    dup.can_use_title = False
+                    dup.is_valid = False if not dup.alias else True
+                    dup.save(validating=True)
+            else:
+                repo.can_use_title = True
+                repo.is_valid = True
+                repo.save(validating=True)
