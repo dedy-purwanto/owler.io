@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 from preferences.models import Preference
@@ -27,3 +28,10 @@ class Email(models.Model):
 
     user = models.ForeignKey(User, related_name='emails')
     email = models.EmailField(unique=True)
+
+
+@receiver(post_save, sender=User)
+def user_post_save(sender, instance, created, **kwargs):
+    if created and not instance.pk == 1:
+        Profile.objects.create(user=instance)
+
