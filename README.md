@@ -54,7 +54,7 @@ The second and and third point is one of the major goal in the new
 version. The current email processing is as below:
 
 1. owler.io receives your email
-2. Checks the sendeer in the whitelist
+2. Checks the sender in the whitelist
 3. Checks the repository detail in the email
 4. Find the repository in the user data
 4. Convert the email to an issue object
@@ -65,6 +65,11 @@ version. The current email processing is as below:
 There's also privacy control here, where you can tune whether or not you
 want owler.io to track your email & API return  or you want to dispose
 it right away.
+
+You'll notice that there's no email address verification here, so in
+between point 2 and 3 there should be a verification process. One
+possible way is by sending a reply to the user along with a verification
+code and ask them to send them back.
 
 Is it free?
 --------------------------
