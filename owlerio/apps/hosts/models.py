@@ -60,3 +60,19 @@ class UserRepoManager(models.Manager):
                 repo.can_use_title = True
                 repo.is_valid = True
                 repo.save(validating=True)
+
+
+class UserRepo(models.Model):
+
+    user_host = models.ForeignKey(UserHost, related_name='repos')
+    repo_id = models.IntegerField(blank=True, null=True)
+    repo_owner_username = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=255)
+    is_valid = models.BooleanField(default=True)
+    can_use_title = models.BooleanField(default=True)
+    alias = models.CharField(blank=True, null=True, max_length=255)
+    preference = models.OneToOneField(Preference, related_name='repo')
+    objects = UserRepoManager()
+
+    def __unicode__(self):
+        return '%s - %s - %s - %s' % (self.user_host.user.username, self.user_host.host.slug, self.repo_id, self.title)
