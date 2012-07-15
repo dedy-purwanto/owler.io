@@ -89,6 +89,10 @@ INSTALLED_APPS = (
     'accounts',
     'home',
 )
+
+SOCIALREGISTRATION_GENERATE_USERNAME = True
+SOCIALREGISTRATION_GENERATE_USERNAME_FUNCTION = 'cores.twitter.generate_username'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
