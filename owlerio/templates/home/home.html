@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load twitter %}
+{% block container %}
+
+<div class="row">
+    <div class='home_email'>
+        <div class="container">
+            <div class="span4">
+                <h1>Create Issue via Email</h1>
+                owler.io lets you create issue to your repositories just by emailing to [repository]@owler.io
+                {% twitter_button "/static/img/signin.png" %}
+                <div class="notes">
+                    We really care about your privacy, <a href=''>see how the owls work</a>.
+                </div>
+            </div>
+            <div class="span7 pull-right">
+                <img src="{{STATIC_URL}}img/emailsample.png" class="sample" />
+                <div class="row">
+                    <div class="span4">
+                        <span class='feature'>Simple</span><br />
+                        Create issue simply by sending email to <br /><u>repo-name@owler.io</u>, set alias such as <u>rp@owler.io</u> to make it 
+                        even faster. Add tags to map them to labels, priority, etc.
+                    </div>
+                    <div class="span3">
+                        <span class='feature'>Multiplatform</span><br />
+                        The owls know which castle to send it to, whether it's Github or Bitbucket they'll know from your repository name.
+
+
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
