@@ -44,15 +44,12 @@ class UserRepoManager(models.Manager):
             dups = UserRepo.objects.filter(title=repo.title).\
                     filter(user_host__user=user).exclude(pk=repo.pk)
             if dups:
-                repo.can_use_title = False
                 repo.is_valid = False if not repo.alias else True
                 repo.save(validating=True)
                 for dup in dups:
-                    dup.can_use_title = False
                     dup.is_valid = False if not dup.alias else True
                     dup.save(validating=True)
             else:
-                repo.can_use_title = True
                 repo.is_valid = True
                 repo.save(validating=True)
 
@@ -64,7 +61,6 @@ class UserRepo(models.Model):
     repo_owner_username = models.TextField(blank=True, null=True)
     title = models.CharField(max_length=255)
     is_valid = models.BooleanField(default=True)
-    can_use_title = models.BooleanField(default=True)
     alias = models.CharField(blank=True, null=True, max_length=255)
     preference = models.OneToOneField(Preference, related_name='repo')
     objects = UserRepoManager()
